@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	gcc \
 	make \
 	zip \
+	unzip \
 	libncurses5-dev \
 	libffi-dev \
 	libxrender-dev \
