@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	make \
 	zip \
 	unzip \
+	valgrind \
 	libncurses5-dev \
 	libffi-dev \
 	libxrender-dev \
