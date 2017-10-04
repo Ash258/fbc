@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	libx11-dev \
 	libxext-dev \
 	libgpm-dev \
+	libcmocka0 \
 	libgl1-mesa-dev
 
 # Cannot wget / curl it for some reason => Inspect
