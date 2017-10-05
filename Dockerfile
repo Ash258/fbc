@@ -2,6 +2,8 @@ FROM debian:jessie-slim as Freebasic
 
 # Required by Freebasic
 # @see https://freebasic.net/wiki/DevBuildLinux
+# sudo apt install gcc make lib{ncurses5,gpm,x11,xext,xpm,xrandr,xrender,gl1-mesa,ffi}-dev
+# sudo apt-get install gcc make lib{ncurses5,gpm,x11,xext,xpm,xrandr,xrender,gl1-mesa,ffi}-dev
 RUN apt-get update && apt-get install -y --no-install-recommends \
 	ca-certificates \
 	gcc \
