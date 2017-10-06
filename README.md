@@ -1,6 +1,6 @@
 # Freebasic compiler
 
-Freebasic docker image for scholl IFJ17 project.
+Freebasic docker image for BUT-FIT IFJ17 project.
 
 Including:
 
