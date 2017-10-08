@@ -1,48 +1,56 @@
-FROM debian:jessie-slim as Freebasic
+FROM debian as Freebasic
 
 # Required by Freebasic
 # @see https://freebasic.net/wiki/DevBuildLinux
 # sudo apt install gcc make lib{ncurses5,gpm,x11,xext,xpm,xrandr,xrender,gl1-mesa,ffi}-dev
 # sudo apt-get install gcc make lib{ncurses5,gpm,x11,xext,xpm,xrandr,xrender,gl1-mesa,ffi}-dev
 RUN apt-get update && apt-get install -y --no-install-recommends \
+	bzip2 \
 	ca-certificates \
 	gcc \
 	make \
 	valgrind \
-	bzip2 \
-	zip \
 	unzip \
-	libncurses5-dev \
+	zip \
 	libffi-dev \
-	libxrender-dev \
-	libxrandr-dev \
-	libxpm-dev \
+	libgl1-mesa-dev \
+	libgpm-dev \
+	libncurses5-dev \
 	libx11-dev \
 	libxext-dev \
-	libgpm-dev \
-	libcmocka0 \
-	libgl1-mesa-dev
+	libxpm-dev \
+	libxrandr-dev \
+	libxrender-dev
 
-# Cannot wget / curl it for some reason => Inspect
-COPY ./FreeBASIC-1.05.0-linux-x86_64.tar.gz ./Criterion-v2.3.2-linux-x86_64.tar.bz2 /usr/local/
+COPY ./FreeBASIC-1.05.0-linux-x86_64.tar.gz \
+	./Criterion-v2.3.2-linux-x86_64.tar.bz2 \
+	./ic17int_linux64_2017-10-04.zip \
+	/usr/local/
 
-WORKDIR /usr/local/
-
-# Freebasic
-RUN tar -xf FreeBASIC-1.05.0-linux-x86_64.tar.gz \
+# Freebasic, Criterion, ic17int
+RUN cd /usr/local/ \
+	&& tar -xf FreeBASIC-1.05.0-linux-x86_64.tar.gz \
 	&& cd ./FreeBASIC-1.05.0-linux-x86_64 \
 	&& ./install.sh -i \
 	&& cd .. \
 	&& tar -xjf Criterion-v2.3.2-linux-x86_64.tar.bz2 \
 	&& cd criterion-v2.3.2 \
-	&& cp -r * /usr/
+	&& cp -r * /usr/ \
+	&& cd .. \
+	&& unzip ./ic17int_linux64_2017-10-04.zip -d ./ic17int_linux64_2017-10-04 \
+	&& cp ./ic17int_linux64_2017-10-04/ic17int /usr/bin/
+
 
 # Final cleaning => Significantly reduce image size
 RUN apt-get autoremove -y \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& cd /usr/local/ \
-	&& rm -rf ./criterion-v2.3.2 ./Criterion-v2.3.2-linux-x86_64.tar.bz2 \
-	./FreeBASIC-1.05.0-linux-x86_64 ./FreeBASIC-1.05.0-linux-x86_64.tar.gz
+	&& rm -rf ./criterion-v2.3.2 \
+	./Criterion-v2.3.2-linux-x86_64.tar.bz2 \
+	./FreeBASIC-1.05.0-linux-x86_64 \
+	./FreeBASIC-1.05.0-linux-x86_64.tar.gz \
+	ic17int_linux64_2017-10-04 \
+	ic17int_linux64_2017-10-04.zip
 
 CMD [ "tail", "-f", "/dev/null" ]
