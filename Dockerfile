@@ -40,7 +40,6 @@ RUN cd /usr/local/ \
 	&& unzip ./ic17int_linux64_2017-10-04.zip -d ./ic17int_linux64_2017-10-04 \
 	&& cp ./ic17int_linux64_2017-10-04/ic17int /usr/bin/
 
-
 # Final cleaning => Significantly reduce image size
 RUN apt-get autoremove -y \
 	&& apt-get clean \
