@@ -20,7 +20,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	libxext-dev \
 	libxpm-dev \
 	libxrandr-dev \
-	libxrender-dev
+	libxrender-dev \
+	python3 \
+	ruby
 
 COPY ./FreeBASIC-1.05.0-linux-x86_64.tar.gz \
 	./Criterion-v2.3.2-linux-x86_64.tar.bz2 \
