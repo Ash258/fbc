@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY ./FreeBASIC-1.05.0-linux-x86_64.tar.gz \
 	./Criterion-v2.3.2-linux-x86_64.tar.bz2 \
-	./ic17int_linux64_2017-10-30.zip \
+	./ic17int_linux64_2017-11-21.zip \
 	/usr/local/
 
 # Freebasic, Criterion, ic17int
@@ -37,8 +37,8 @@ RUN cd /usr/local/ \
 	&& cd criterion-v2.3.2 \
 	&& cp -r * /usr/ \
 	&& cd .. \
-	&& unzip ./ic17int_linux64_2017-10-30.zip -d ./ic17int_linux64_2017-10-30 \
-	&& cp ./ic17int_linux64_2017-10-30/ic17int /usr/bin/ \
+	&& unzip ./ic17int_linux64_2017-11-21.zip -d ./ic17int_linux64_2017-11-21 \
+	&& cp ./ic17int_linux64_2017-11-21/ic17int /usr/bin/ \
 	&& chmod +x /usr/bin/ic17int
 
 # Final cleaning => Significantly reduce image size
@@ -50,7 +50,7 @@ RUN apt-get autoremove -y \
 	./Criterion-v2.3.2-linux-x86_64.tar.bz2 \
 	./FreeBASIC-1.05.0-linux-x86_64 \
 	./FreeBASIC-1.05.0-linux-x86_64.tar.gz \
-	ic17int_linux64_2017-10-30 \
-	ic17int_linux64_2017-10-30.zip
+	ic17int_linux64_2017-11-21 \
+	ic17int_linux64_2017-11-21.zip
 
 CMD [ "tail", "-f", "/dev/null" ]
