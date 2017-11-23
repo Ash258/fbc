@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	libxrandr-dev \
 	libxrender-dev \
 	python3 \
-	python-pip
+	python3-pip
 
 COPY ./FreeBASIC-1.05.0-linux-x86_64.tar.gz \
 	./Criterion-v2.3.2-linux-x86_64.tar.bz2 \
