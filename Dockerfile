@@ -5,6 +5,8 @@ FROM debian as Freebasic
 # sudo apt install gcc make lib{ncurses5,gpm,x11,xext,xpm,xrandr,xrender,gl1-mesa,ffi}-dev
 # sudo apt-get install gcc make lib{ncurses5,gpm,x11,xext,xpm,xrandr,xrender,gl1-mesa,ffi}-dev
 RUN apt-get update && apt-get install -y --no-install-recommends \
+	python3 \
+	wget \
 	bzip2 \
 	ca-certificates \
 	gcc \
@@ -20,9 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	libxext-dev \
 	libxpm-dev \
 	libxrandr-dev \
-	libxrender-dev \
-	python3 \
-	python3-pip
+	libxrender-dev
 
 COPY ./FreeBASIC-1.05.0-linux-x86_64.tar.gz \
 	./Criterion-v2.3.2-linux-x86_64.tar.bz2 \
